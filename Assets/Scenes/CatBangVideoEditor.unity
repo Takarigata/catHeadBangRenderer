@@ -280,12 +280,12 @@ PrefabInstance:
     - target: {fileID: 38868376863240128, guid: 7b04636f348dd2843b0e6ca426284232,
         type: 3}
       propertyPath: _BpmChanges.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 38868376863240128, guid: 7b04636f348dd2843b0e6ca426284232,
         type: 3}
       propertyPath: _UseCustomAudioClip
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 38868376863240128, guid: 7b04636f348dd2843b0e6ca426284232,
         type: 3}
@@ -295,53 +295,63 @@ PrefabInstance:
     - target: {fileID: 38868376863240128, guid: 7b04636f348dd2843b0e6ca426284232,
         type: 3}
       propertyPath: _TargetCatBPM
-      value: 60
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 38868376863240128, guid: 7b04636f348dd2843b0e6ca426284232,
         type: 3}
       propertyPath: _BackgroundVideo
       value: 
-      objectReference: {fileID: 32900000, guid: 5919cf00fc8fde44f80e346ae4fd6e9b,
+      objectReference: {fileID: 32900000, guid: 2cba8493069cf61459eafa8d9dda3c08,
         type: 3}
     - target: {fileID: 38868376863240128, guid: 7b04636f348dd2843b0e6ca426284232,
         type: 3}
       propertyPath: _BpmChanges.Array.data[1].BPM
-      value: 150
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 38868376863240128, guid: 7b04636f348dd2843b0e6ca426284232,
         type: 3}
       propertyPath: _BpmChanges.Array.data[0].seconds
-      value: 2
+      value: 124
       objectReference: {fileID: 0}
     - target: {fileID: 38868376863240128, guid: 7b04636f348dd2843b0e6ca426284232,
         type: 3}
       propertyPath: _BpmChanges.Array.data[0].BPM
-      value: 112
+      value: 130
       objectReference: {fileID: 0}
     - target: {fileID: 38868376863240128, guid: 7b04636f348dd2843b0e6ca426284232,
         type: 3}
       propertyPath: _BpmChanges.Array.data[1].seconds
-      value: 4
+      value: 126
       objectReference: {fileID: 0}
     - target: {fileID: 38868376863240128, guid: 7b04636f348dd2843b0e6ca426284232,
         type: 3}
       propertyPath: _BpmChanges.Array.data[2].seconds
-      value: 6
+      value: 128
       objectReference: {fileID: 0}
     - target: {fileID: 38868376863240128, guid: 7b04636f348dd2843b0e6ca426284232,
         type: 3}
       propertyPath: _BpmChanges.Array.data[2].BPM
-      value: 250
+      value: 130
       objectReference: {fileID: 0}
     - target: {fileID: 38868376863240128, guid: 7b04636f348dd2843b0e6ca426284232,
         type: 3}
       propertyPath: _BpmChanges.Array.data[3].seconds
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 38868376863240128, guid: 7b04636f348dd2843b0e6ca426284232,
         type: 3}
       propertyPath: _BpmChanges.Array.data[3].BPM
-      value: 60
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 38868376863240128, guid: 7b04636f348dd2843b0e6ca426284232,
+        type: 3}
+      propertyPath: _startTime
+      value: 110
+      objectReference: {fileID: 0}
+    - target: {fileID: 38868376863240128, guid: 7b04636f348dd2843b0e6ca426284232,
+        type: 3}
+      propertyPath: _catDelay
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 38868377250111031, guid: 7b04636f348dd2843b0e6ca426284232,
         type: 3}
