@@ -37,6 +37,10 @@ public class VideoRenderManager : MonoBehaviour
     [SerializeField]
     private List<BPMChange> _BpmChanges = new List<BPMChange>();
     
+    Dictionary <float, BPMChange> _bpmDico = new Dictionary<float, BPMChange>();
+    
+    private BPMChange currentBPM = new BPMChange();
+    
     [SerializeField]
     private int _BaseCatBPM = 117;
     
@@ -48,32 +52,32 @@ public class VideoRenderManager : MonoBehaviour
     [Space(10)]
     [Header("Video Settings")]
     [SerializeField]
-    private VideoPlayer _CatVideoPlayer;
+    private VideoPlayer _CatVideoPlayer = null;
     
     [SerializeField]
-    private VideoPlayer _BackgroundVideoPlayer;
+    private VideoPlayer _BackgroundVideoPlayer = null;
     
     [SerializeField]
-    private float _startTime;
+    private float _startTime = 0;
     
     [SerializeField]
-    private float _catDelay;
+    private float _catDelay = 0;
     
     [SerializeField]
-    private Vector2 _catOffset;
+    private Vector2 _catOffset = new Vector2(0,0);
     
     [SerializeField]
-    private VideoClip _BackgroundVideo;
+    private VideoClip _BackgroundVideo = null;
     
     [Space(10)]
     [Header("Audio Settings")]
     [SerializeField]
     private bool _UseCustomAudioClip = false;
+
+    [SerializeField] 
+    private AudioClip _CustomAudioClip = null;
     
-    [SerializeField]
-    private AudioClip _CustomAudioClip;
-    
-    private AudioSource _customAudioSource;
+    private AudioSource _customAudioSource = null;
 
     private bool _CheckBPMChangeList;
     
@@ -87,7 +91,7 @@ public class VideoRenderManager : MonoBehaviour
     [Header("Rendering Settings")]
     
     [SerializeField]
-    private RawImage _renderer;
+    private RawImage _renderer = null;
     
     
     #endregion
@@ -95,6 +99,7 @@ public class VideoRenderManager : MonoBehaviour
     
     public void Start()
     {
+        PopulateDictionnary();
         OffsetCatTexture();
         _currentTime = _startTime;
         _customAudioSource = GetComponent<AudioSource>();
@@ -121,6 +126,31 @@ public class VideoRenderManager : MonoBehaviour
         _CheckBPMChangeList = (_BpmChanges.Count > 0);
     }
 
+    void PopulateDictionnary()
+    {
+        foreach (BPMChange tmp in _BpmChanges)
+        {
+            _bpmDico.Add(tmp.seconds, tmp);
+        }
+        FindNextItem();
+    }
+
+    void FindNextItem()
+    {
+        List<float> tmpSeconds = new List<float>();
+        List<float> keyList = new List<float>(this._bpmDico.Keys);
+        
+        for(int i = 0; i < keyList.Count; i++ )
+        {
+            BPMChange tmp = _bpmDico[keyList[i]];
+            if (!tmp.done)
+            {
+                tmpSeconds.Add(tmp.seconds);
+            }
+        }
+        _bpmDico.TryGetValue(tmpSeconds.Min(), out currentBPM);
+
+    }
     void OffsetCatTexture()
     {
         if (_renderer)
@@ -151,12 +181,28 @@ public class VideoRenderManager : MonoBehaviour
     private void Update()
     {
         _currentTime += Time.deltaTime;
-        //Degeu
-        FindClosestStruc();
+        if (_bpmDico.Count > 0)
+        {
+            CheckForNextItem();
+        }
     }
 
+    void CheckForNextItem()
+    {
+        if (_currentTime > currentBPM.seconds)
+        {
+            currentBPM.done = true;
+            ReCalculateBPM(currentBPM.BPM);
+            _bpmDico.Remove(currentBPM.seconds);
+            if (_bpmDico.Count > 0)
+            {
+                FindNextItem();
+            }
+        }
+    }
     void ReCalculateBPM(int BPM)
     {
         _CatVideoPlayer.playbackSpeed = CalculateCatVideoSpeed(BPM);
     }
+    
 }
